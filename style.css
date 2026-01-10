@@ -238,6 +238,57 @@ body {
 
 }
 
+.map-svg{
+    flex-direction: column;
+    gap: 20px;
+    
+    width: 100%;
+    /* Ocupa todo el ancho disponible */
+    height: 100%;
+    /* Ocupa todo el alto disponible */
+    min-width: 600px;
+    /* Evita que se haga minúsculo en pantallas medianas */
+    object-fit: contain;
+    /* Mantiene la proporción sin deformarse */
+    transition: transform 0.3s ease;
+    flex: 4;
+    /* Le damos más peso sobre el panel lateral (antes era 4) */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Importante para que el zoom o el mapa grande no se salgan */
+
+}
+
+/* El contenedor debe permitir que el SVG mande en su tamaño interno */
+#map-container {
+    width: 100%; 
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Esta es la regla maestra para que todos los mapas se vean proporcionales */
+#map-container svg {
+    /* En lugar de un ancho fijo, limitamos cuánto puede crecer */
+    width: auto;
+    height: auto;
+    
+    /* Se ajusta al 50% del ancho de la pantalla o al 70% del alto, 
+       lo que sea que se alcance primero. Esto evita que "exploten" en tamaño */
+    max-width: 50vw; 
+    max-height: 70vh;
+    
+    display: block;
+    margin: auto;
+    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.2));
+    transition: all 0.3s ease;
+}
 
 
 /* Colores de las Regiones del SVG */
@@ -276,6 +327,26 @@ body {
 .fil8 {
     fill: var(--c_norte);
 }
+
+/* 1. Definición base para los elementos del mapa */
+.map-svg svg path, 
+.map-svg svg polygon,
+#map-container svg path,
+#map-container svg polygon {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    stroke-width: 1px; /* Ajusta según la escala de tu SVG */
+    stroke: rgba(255, 255, 255, 0.2); /* Un borde sutil */
+}
+
+/* 2. Efecto HOVER */
+#map-container svg path:hover,
+#map-container svg polygon:hover {
+    fill: #00f391 !important; /* El verde neón de tu marca */
+    filter: drop-shadow(0 0 15px rgba(0, 243, 145, 0.8));
+}
+
+
 
 /* ==========================================================================
    5. ASIDE & CATEGORÍAS
