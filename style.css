@@ -1,36 +1,93 @@
 /* ==========================================================================
-   1. CONFIGURACIÓN GLOBAL Y VARIABLES
+   1. CONFIGURACIÓN GLOBAL Y VARIABLES 
    ========================================================================== */
+
+/* modo dark*/
 :root {
-    /* Variables Generales */
-    --bg-body: #1c212c;
-    --bg-card: #12151b;
+    /* Modo Dark (Default) */
+    
+    --bg-body: #0c0e12;
+    --bg-card: #0c0e12;;
+    --bg-panel:  #1c2025;;
     --accent: #00f391;
-    --platzi-green: #00f391;
     --text-main: #ffffff;
-    --text-dim: rgba(255, 255, 255, 0.6);
-    --dark-bg: #121f3d;
-    --white: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.8);
+    --text-dim: rgba(53, 59, 71, 0.6);
+    --border-ui: rgba(255, 255, 255, 0.1);
+    --shadow-ui: rgba(0, 0, 0, 0.5);
+    --header: #12151b;
+    --footer: #0c0e12;
+    --social: #ffffff;
+    --text-header:#00f391;
+    
+    /* Gradiente Mapa */
+    --map-grad-1: rgba(0, 243, 146, 0.05);
+    --map-grad-2: #0c0e12;
 
-    /* Variables Mapa */
-    --bg-map: #12151b;
-    --c_oriente: #00f5d4;
-    --c_suroeste: #f1b35b;
-    --c_magdalena: #44e33e;
-    --c_uraba: #fee440;
-    --c_nordeste: #a2d2ff;
-    --c_bajocauca: #ccff33;
-    --c_valleaburra: #fb5607;
-    --c_occidente: #00bbf9;
-    --c_norte: #d751c6;
+    /* Gradiente vibrante para Dark Mode */
+    --ticker-text: #12151b;
 
-    /* Variables Rutas Populares */
-    --bg-color: #0d1117;
-    --accent-color: #00ffaa;
-    --text-white: #ffffff;
-    --gray-input: #1f2937;
+    /* Colores Mapa (Vibrantes para fondo oscuro) */
+    --c_oriente: #00f5d4; --c_suroeste: #f1b35b; --c_magdalena: #44e33e;
+    --c_uraba: #fee440; --c_nordeste: #a2d2ff; --c_bajocauca: #ccff33;
+    --c_valleaburra: #fb5607; --c_occidente: #00bbf9; --c_norte: #d751c6;
+
+ 
+    /* ... tus otras variables ... */
+    --bg-glow-gradient: radial-gradient(
+        circle at center, 
+        rgba(0, 243, 146, 0.056) 30%, 
+        #0c0e12 70%
+    );
+
+    /* ... otras variables ... */
+    
+    /* El color de la sombra (glow) separado para mayor control */
+    --accent-glow-color: rgba(0, 243, 145, 0.08);
+    
+    /* La variable solicitada */
+    --shadow-glow: 0 0 40px var(--accent-glow-color)
+
+    /* ... tus otras variables ... */
+    --bg-toggle: var(--bg-card);
+    --text-toggle: var(--platzi-green);
+    --border-toggle: rgba(0, 243, 145, 0.3);
 }
+
+body.light-mode {
+   
+    /* Gradiente un poco más suave para Light Mode (opcional, o puedes mantener el original) */
+    --ticker-text: #0c0e12;
+    /* Modo Light */
+    --bg-body: #f3f3f3;
+    --bg-card: #ffffff;
+    --bg-panel: #e8e8e8;
+    --accent: #ffdc72; /* Verde más oscuro para contraste en blanco */
+    --text-main: #1c212c;
+    --text-dim: #5c6b84;
+    --border-ui: rgba(0, 0, 0, 0.1);
+    --shadow-ui: rgba(0, 0, 0, 0.05);
+    --footer: #00c562;
+    --header:#00c562;
+    --social: #ffffff;
+    --text-header:#ffffff;
+
+    /* Gradiente Mapa Light */
+    --map-grad-1: #ffffff;
+    --map-grad-2: #d1d9e6;
+    
+ /* Colores Mapa (Vibrantes para fondo oscuro) */
+    --c_oriente: #0ed8bd; --c_suroeste: #f1b35b; --c_magdalena: #44e33e;
+    --c_uraba: #ffe646fb; --c_nordeste: #7daedc; --c_bajocauca: #b1dd2c;
+    --c_valleaburra: #fb5607; --c_occidente: #00bbf9; --c_norte: #d751c6;
+    /* Ajuste del gradiente de fondo para el mapa */
+    --bg-glow-gradient:white;
+
+    /* ... tus otras variables de luz ... */
+    --bg-toggle: #dcffed;
+    --text-toggle: #ffffff;
+    --border-toggle: rgb(255, 255, 255);
+}
+
 
 * {
     margin: 0;
@@ -55,8 +112,8 @@ body {
    2. HEADER
    ========================================================================== */
 .main-header {
-    background-color: #12151b;
-    color: white;
+    background-color: var(--header);
+    color:var(--text-header);
     padding: 15px 5%;
     font-family: 'Inter', sans-serif;
 }
@@ -77,7 +134,7 @@ body {
 }
 
 .logo {
-    color: var(--platzi-green);
+    color: var(--text-header);
     font-weight: bold;
     font-size: 1.5rem;
     display: flex;
@@ -99,30 +156,43 @@ body {
     transition: color 0.2s;
 }
 
-.nav-item:hover {
-    color: var(--platzi-green);
-}
-
-.btn-login {
-    background-color: var(--platzi-green);
-    color: #0c1633;
-    border: none;
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-weight: bold;
+/* Estilo del Botón */
+.theme-switch {
+    background: transparent;
+    border: 2px solid var(--border-toggle);
+    color: var(--text-toggle);
     cursor: pointer;
-    transition: transform 0.2s;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px; /* Un toque menos circular, más moderno */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
 }
 
-.btn-login:hover {
-    transform: scale(1.05);
+.theme-switch:hover {
+    background: rgba(0, 243, 145, 0.1);
+    border-color: var(--platzi-green);
+}
+
+/* Control de visibilidad de los iconos */
+.theme-switch .icon-sun { display: none; }
+.theme-switch .icon-moon { display: block; }
+
+/* Inversión en Light Mode */
+.light-mode .theme-switch .icon-sun { display: block; }
+.light-mode .theme-switch .icon-moon { display: none; }
+
+/* Aseguramos que el SVG herede el color */
+.theme-switch svg {
+    stroke: currentColor;
 }
 
 /* ==========================================================================
    3. HERO, BANNER & MARQUESINA
    ========================================================================== */
 .hero-banner {
-    background-color: var(--platzi-green);
     background-image: url('assets/banner.png');
     padding: 60px 20px;
     min-height: 315px;
@@ -133,7 +203,7 @@ body {
 .ticker-banner {
     width: 100%;
     height: 50px;
-    background: radial-gradient(circle at right, #7effc3 0%, var(--platzi-green) 60%);
+    background-color: var(--accent);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -160,13 +230,8 @@ body {
 }
 
 @keyframes ticker {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
 /* ==========================================================================
@@ -189,9 +254,7 @@ body {
     display: flex;
     width: 100%;
     max-width: 1300px;
-    /* Un poco más ancho para dar aire */
     height: 85vh;
-    /* Aumentamos de 70vh a 85vh para que el mapa respire verticalmente */
     margin: 0 auto;
 }
 
@@ -200,33 +263,21 @@ body {
     gap: 20px;
     background: var(--bg-map);
     border-radius: 20px;
-    border: 1px solid rgba(0, 243, 145, 0.15);
-    box-shadow: 0 0 40px rgba(0, 243, 145, 0.08);
+    border: 1px solid var(--border-ui);
+    box-shadow: var(--shadow-glow);
     width: 100%;
-    /* Ocupa todo el ancho disponible */
     height: 100%;
-    /* Ocupa todo el alto disponible */
     min-width: 600px;
-    /* Evita que se haga minúsculo en pantallas medianas */
     object-fit: contain;
-    /* Mantiene la proporción sin deformarse */
     transition: transform 0.3s ease;
     flex: 4;
-    /* Le damos más peso sobre el panel lateral (antes era 4) */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    /* Importante para que el zoom o el mapa grande no se salgan */
     padding-top: 15px;
-    /* Eliminamos el padding para ganar espacio real */
-    /* Crea ese efecto de "foco" central */
-    background: radial-gradient(
-        circle at center, 
-        rgba(0, 243, 146, 0.056) 30%, /* Un toque de verde muy sutil en el centro */
-        #0c0e12 70%                /* Negro profundo hacia los bordes */
-    );
+    background: var(--bg-glow-gradient);
 }
 
 .map-viewport svg {
@@ -234,35 +285,24 @@ body {
     width: 100%;
     height: auto;
     max-height: 90vh;
-    /* filter: drop-shadow(0 0 120px rgba(0, 243, 145, 0.4)); */
-
 }
 
-.map-svg{
+.map-svg {
     flex-direction: column;
     gap: 20px;
-    
     width: 100%;
-    /* Ocupa todo el ancho disponible */
     height: 100%;
-    /* Ocupa todo el alto disponible */
     min-width: 600px;
-    /* Evita que se haga minúsculo en pantallas medianas */
     object-fit: contain;
-    /* Mantiene la proporción sin deformarse */
     transition: transform 0.3s ease;
     flex: 4;
-    /* Le damos más peso sobre el panel lateral (antes era 4) */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    /* Importante para que el zoom o el mapa grande no se salgan */
-
 }
 
-/* El contenedor debe permitir que el SVG mande en su tamaño interno */
 #map-container {
     width: 100%; 
     height: 100%;
@@ -273,80 +313,42 @@ body {
     box-sizing: border-box;
 }
 
-/* Esta es la regla maestra para que todos los mapas se vean proporcionales */
 #map-container svg {
-    /* En lugar de un ancho fijo, limitamos cuánto puede crecer */
     width: auto;
     height: auto;
-    
-    /* Se ajusta al 50% del ancho de la pantalla o al 70% del alto, 
-       lo que sea que se alcance primero. Esto evita que "exploten" en tamaño */
     max-width: 50vw; 
     max-height: 70vh;
-    
     display: block;
     margin: auto;
     filter: drop-shadow(0 15px 35px rgba(0,0,0,0.2));
     transition: all 0.3s ease;
 }
 
+.fil0 { fill: var(--c_oriente); }
+.fil1 { fill: var(--c_suroeste); }
+.fil2 { fill: var(--c_magdalena); }
+.fil3 { fill: var(--c_uraba); }
+.fil4 { fill: var(--c_nordeste); }
+.fil5 { fill: var(--c_bajocauca); }
+.fil6 { fill: var(--c_valleaburra); }
+.fil7 { fill: var(--c_occidente); }
+.fil8 { fill: var(--c_norte); }
 
-/* Colores de las Regiones del SVG */
-.fil0 {
-    fill: var(--c_oriente);
-}
-
-.fil1 {
-    fill: var(--c_suroeste);
-}
-
-.fil2 {
-    fill: var(--c_magdalena);
-}
-
-.fil3 {
-    fill: var(--c_uraba);
-}
-
-.fil4 {
-    fill: var(--c_nordeste);
-}
-
-.fil5 {
-    fill: var(--c_bajocauca);
-}
-
-.fil6 {
-    fill: var(--c_valleaburra);
-}
-
-.fil7 {
-    fill: var(--c_occidente);
-}
-
-.fil8 {
-    fill: var(--c_norte);
-}
-
-/* 1. Definición base para los elementos del mapa */
 .map-svg svg path, 
 .map-svg svg polygon,
 #map-container svg path,
 #map-container svg polygon {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    stroke-width: 1px; /* Ajusta según la escala de tu SVG */
-    stroke: rgba(255, 255, 255, 0.2); /* Un borde sutil */
+    stroke-width: 1px;
+    stroke: rgba(255, 255, 255, 0.2);
 }
 
-/* 2. Efecto HOVER */
 #map-container svg path:hover,
 #map-container svg polygon:hover {
-    fill: #00f391 !important; /* El verde neón de tu marca */
+    fill: #00f391 !important;
     filter: drop-shadow(0 0 15px rgba(0, 243, 145, 0.8));
 }
-
-
 
 /* ==========================================================================
    5. ASIDE & CATEGORÍAS
@@ -356,7 +358,7 @@ body {
     padding: 30px;
     display: flex;
     flex-direction: column;
-    background: #0c0e12;
+    background: var(--bg-card);
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 40px rgba(0, 243, 145, 0.08);
@@ -369,7 +371,7 @@ body {
     margin-bottom: 2rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #e0e0e0;
+    color: var(--text-main);
 }
 
 .categories-grid {
@@ -380,7 +382,7 @@ body {
 
 .category-card {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-ui);
     border-radius: 16px;
     padding: 1rem;
     display: flex;
@@ -407,7 +409,7 @@ body {
 .category-card h3 {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #ccc;
+    color: var(--text-main);
 }
 
 /* ==========================================================================
@@ -418,40 +420,30 @@ body {
     max-width: 1300px;
     margin: 0 auto;
     padding: 25px;
-    background: #0c0e12;
-    border: 1px solid rgba(0, 243, 145, 0.15);
+    background: var(--bg-card);
+    border: 2px solid var(--border-ui);
     box-shadow: 0 0 40px rgba(0, 243, 145, 0.08);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    color: var(--text-main);    
 }
 
 .destinos-grid {
     display: flex;
-    /* Cambiamos de grid a flex para control lineal */
     gap: 16px;
     width: 100%;
     overflow-x: auto;
-    /* Habilita el scroll horizontal */
     padding-bottom: 15px;
-    /* Espacio para que la sombra de la card no se corte */
     scroll-snap-type: x mandatory;
-    /* Opcional: para que las cards "ajusten" al deslizar */
-
-    /* Ocultar scrollbar en navegadores modernos si lo deseas */
     scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
-    /* Suavidad en iOS */
 }
 
 .card {
     flex: 0 0 280px;
-    /* NO permite que se encojan, base fija de 280px */
     scroll-snap-align: start;
-    /* Alineación del ajuste de scroll */
-
-    /* Mantén el resto de tus estilos de .card igual */
     position: relative;
     border-radius: 12px;
     overflow: hidden;
@@ -568,11 +560,10 @@ body {
     height: 14px;
     background-color: var(--region-color);
     border-radius: 3px;
-    /* box-shadow: 0 0 10px var(--region-color); */
 }
 
 .region-name {
-    color: rgba(255, 255, 255, 0.85);
+    color: var(--text-main);
     font-size: 0.95rem;
     font-weight: 500;
 }
@@ -581,29 +572,35 @@ body {
    8. TRAILS EXPLORER & FOOTER
    ========================================================================== */
 .trails-explorer {
-    /* background-image: url('/asets/11.png'); */
-    /* background: radial-gradient(circle at right, #7effc3 0%, var(--platzi-green) 60%); */
-    min-height: 200px;
+    color: var(--text-main);
+    min-height: 180px;
     display: flex;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
     position: relative;
     width: 100%;
+
     overflow: hidden;
+    background-color: var(--bg-panel);
 }
+
 .activity-nav {
+    width: 100%;
+    max-width: 1300px;
     gap: 20px;
     display: flex;
+    justify-content:space-between;
     align-items: center;
     flex-direction: row;
 }
 
 .activity-list {
     display: flex;
+    align-items: center;
     justify-content: center;
     gap: 12px;
     list-style: none;
-    padding: 10px;
+    padding: 10px 0 0 0;
     overflow-x: auto;
 }
 
@@ -612,20 +609,20 @@ body {
     align-items: center;
     gap: 10px;
     padding: 10px 22px;
-    color: var(--text-dim);
+    color: var(--text-main);
     text-decoration: none;
     font-weight: 600;
     border-radius: 8px;
     background: var(--bg-card);
-    border: 2px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
 }
 
 .activity-item a:hover {
-    color: #0c0e12;
+    color: #eaeaea;
     background: rgba(0, 243, 145, 0.05);
-    border-color: #0c0e12;
+    border-color: rgb(177, 187, 214);
     transform: translateY(-2px);
 }
 
@@ -642,7 +639,7 @@ body {
 }
 
 .main-footer {
-    background-color: #0c0e12;
+    background-color: var(--footer);
     padding: 20px 5%;
     border-top: 1px solid rgba(0, 243, 145, 0.2);
 }
@@ -656,7 +653,7 @@ body {
 }
 
 .social-link {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--social );
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -677,9 +674,7 @@ body {
    9. RESPONSIVIDAD (MEDIA QUERIES)
    ========================================================================== */
 @media (max-width: 1024px) {
-
-    .nav-links,
-    .search-bar {
+    .nav-links {
         display: none;
     }
 
@@ -702,3 +697,5 @@ body {
         text-align: center;
     }
 }
+
+

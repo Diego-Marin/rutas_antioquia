@@ -116,3 +116,28 @@ if (backButton) {
     // IMPORTANTE: Pasamos el objeto 'e' automáticamente
     backButton.addEventListener('click', resetMap);
 }
+
+
+
+
+/* ==========================================================================
+   GESTIÓN DE TEMA (LIGHT/DARK MODE)
+   ========================================================================== */
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// 1. Cargar preferencia guardada de inmediato
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+    body.classList.add('light-mode');
+}
+
+// 2. Escuchar el click una sola vez
+themeToggle.addEventListener('click', () => {
+    // Alternar la clase
+    body.classList.toggle('light-mode');
+    
+    // Guardar la preferencia actual
+    const isLight = body.classList.contains('light-mode');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
