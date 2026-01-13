@@ -9,22 +9,18 @@
 </head>
 
 <body>
-
     <header class="main-header">
         <div class="header-container">
             <div class="left-section">
                 <div class="logo">
-                    <span class="logo-icon">◇ </span> Viajantoqueño
+                    <span class="logo-icon">◇ </span> Antioquia
                 </div>
             </div>
 
             <nav class="nav-links">
-                <a href="#" class="nav-item">Cursos</a>
+                <a href="#" class="nav-item">Donaciones</a>
                 <a href="#" class="nav-item">Empresas</a>
-                <a href="#" class="nav-item">Blog</a>
-                <a href="#" class="nav-item">Live</a>
-                <a href="#" class="nav-item">Conf</a>
-                <a href="#" class="nav-item">Precios</a>
+                <a href="#" class="nav-item">Sobre Nosotros</a>
             </nav>
 
             <button id="theme-toggle" class="theme-switch" aria-label="Cambiar tema">
@@ -57,94 +53,157 @@
     <section class="ticker-banner">
         <div class="ticker-wrapper">
             <div class="ticker-item">
-                No necesitas ir muy lejos para disfrutar, Descubre tu territorio Antioquia es tu casa. No necesitas ir
-                muy lejos para disfrutar, Descubre tu territorio Antioquia es tu casa.
+                No hace falta ir lejos ni gastar de más.   A veces el viaje empieza en el mismo lugar donde vives.   Conoce
+                tu territorio.
             </div>
             <div class="ticker-item">
-                No necesitas ir muy lejos para disfrutar, Descubre tu territorio Antioquia es tu casa. No necesitas ir
-                muy lejos para disfrutar, Descubre tu territorio Antioquia es tu casa.
+                No hace falta ir lejos ni gastar de más.   A veces el viaje empieza en el mismo lugar donde vives.   Conoce
+                tu territorio.
             </div>
         </div>
     </section>
 
     <section id="map-explorer" class="light-mode">
 
-        <div class="populares">
+        <section class="populares">
             <div class="container">
-                <h1 class="title">
-                    Rutas populares
-                </h1>
-                <div class="pricing-container">
-                    <p class="savings">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident eligendi rerum expedita eaque
-                        est ipsa reiciendis. Iusto repellat vitae quibusdam!
-                    </p>
+                <div class="header-populares">
+                    <h2 class="title">Rutas populares</h2>
+                    <div class="nav-arrows">
+                        <button class="arrow-btn prev" onclick="scrollGrid(-1)">❮</button>
+                        <button class="arrow-btn next" onclick="scrollGrid(1)">❯</button>
+                    </div>
+                </div>
+                <p class="savings">Explora los destinos más emblemáticos seleccionados por nuestra comunidad.</p>
+            </div>
+
+            <div class="grid-wrapper">
+                <div class="destinos-grid" id="destinosGrid">
+                    <article class="card">
+                        <img src="./assets/3.png" alt="El Peñol: La Piedra de Guatapé" loading="lazy">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <h3 class="card-title">El Peñol: La Piedra de Guatapé</h3>
+                            <p class="card-description">Vistas potentes, 740 escalones y un pueblito lleno de zócalos
+                                coloridos.</p>
+                            <div class="card-footer">
+                                <button class="btn-card" aria-label="Ver detalles de El Peñol">
+                                    Ver más
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3">
+                                        <path d="M9 18l6-6-6-6"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./assets/3.png" alt="El Peñol: La Piedra de Guatapé" loading="lazy">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <h3 class="card-title">El Peñol: La Piedra de Guatapé</h3>
+                            <p class="card-description">Vistas potentes, 740 escalones y un pueblito lleno de zócalos
+                                coloridos.</p>
+                            <div class="card-footer">
+                                <button class="btn-card" aria-label="Ver detalles de El Peñol">
+                                    Ver más
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3">
+                                        <path d="M9 18l6-6-6-6"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./assets/3.png" alt="El Peñol: La Piedra de Guatapé" loading="lazy">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <h3 class="card-title">El Peñol: La Piedra de Guatapé</h3>
+                            <p class="card-description">Vistas potentes, 740 escalones y un pueblito lleno de zócalos
+                                coloridos.</p>
+                            <div class="card-footer">
+                                <button class="btn-card" aria-label="Ver detalles de El Peñol">
+                                    Ver más
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3">
+                                        <path d="M9 18l6-6-6-6"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./assets/3.png" alt="El Peñol: La Piedra de Guatapé" loading="lazy">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <h3 class="card-title">El Peñol: La Piedra de Guatapé</h3>
+                            <p class="card-description">Vistas potentes, 740 escalones y un pueblito lleno de zócalos
+                                coloridos.</p>
+                            <div class="card-footer">
+                                <button class="btn-card" aria-label="Ver detalles de El Peñol">
+                                    Ver más
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3">
+                                        <path d="M9 18l6-6-6-6"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="./assets/3.png" alt="El Peñol: La Piedra de Guatapé" loading="lazy">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="rating">
+                                    <span class="star">★</span>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <h3 class="card-title">El Peñol: La Piedra de Guatapé</h3>
+                            <p class="card-description">Vistas potentes, 740 escalones y un pueblito lleno de zócalos
+                                coloridos.</p>
+                            <div class="card-footer">
+                                <button class="btn-card" aria-label="Ver detalles de El Peñol">
+                                    Ver más
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="3">
+                                        <path d="M9 18l6-6-6-6"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
-
-            <div class="destinos-grid">
-                <article class="card">
-                    <img src="./assets/3.png" alt="El Peñol">
-                    <div class="card-content">
-                        <h3>El Peñol: La Piedra de Guatapé</h3>
-                        <p>Vistas potentes y pueblito de zócalos.</p>
-                        <button class="btn-card">Ver más</button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="./assets/3.png" alt="Jardín">
-                    <div class="card-content">
-                        <h3>Jardín: Pueblo Cafetero</h3>
-                        <p>Arquitectura colonial y cultura cafetera.</p>
-                        <button class="btn-card">Ver más</button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="./assets/3.png" alt="Santa Fe">
-                    <div class="card-content">
-                        <h3>Santa Fe: Historia Viva</h3>
-                        <p>Calles empedradas y arquitectura colonial.</p>
-                        <button class="btn-card">Ver más</button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="./assets/3.png" alt="Santa Fe">
-                    <div class="card-content">
-                        <h3>Santa Fe: Historia Viva</h3>
-                        <p>Calles empedradas y arquitectura colonial.</p>
-                        <button class="btn-card">Ver más</button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="./assets/3.png" alt="Santa Fe">
-                    <div class="card-content">
-                        <h3>Santa Fe: Historia Viva</h3>
-                        <p>Calles empedradas y arquitectura colonial.</p>
-                        <button class="btn-card">Ver más</button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img src="./assets/3.png" alt="Santa Fe">
-                    <div class="card-content">
-                        <h3>Santa Fe: Historia Viva</h3>
-                        <p>Calles empedradas y arquitectura colonial.</p>
-                        <button class="btn-card">Ver más</button>
-                    </div>
-                </article>
-            </div>
-        </div>
+        </section>
 
         <div class="explorer-wrapper">
 
             <div class="map-viewport">
                 <div class="map-svg">
-                    <button onclick="resetMap()" class="back-circle">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#00f391" stroke-width="3">
+                    <button onclick="resetMap()" class="back-circle" aria-label="Volver">
+                        <svg viewBox="0 0 24 24">
                             <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
@@ -217,49 +276,47 @@
             </div>
 
             <aside class="subregiones-panel">
-                <div class="categories-panel">
-                    <h2 class="panel-title">Categorías</h2>
+                <h2 class="panel-title">Explorar Categorías</h2>
 
-                    <div class="categories-grid">
-                        <div class="category-card">
-                            <span class="category-icon">🏛️</span>
-                            <h3>Arquitectura</h3>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="icon-wrapper">🏛️</div>
+                        <h3>Arquitectura</h3>
+                    </div>
+                    <div class="category-card">
+                        <div class="icon-wrapper">⛺</div>
+                        <h3>Camping</h3>
+                    </div>
+                    <div class="category-card">
+                        <div class="icon-wrapper">⛰️</div>
+                        <h3>Montañas y Flora</h3>
+                    </div>
+                    <div class="category-card">
+                        <div class="icon-wrapper">🌊</div>
+                        <h3>Ríos y Cascadas</h3>
+                    </div>
+
+                    <div class="featured-card">
+                        <div class="featured-content">
+                            <h3>Pueblos Mejor Calificados</h3>
+                            <div class="stars">★★★★★</div>
                         </div>
+                    </div>
 
-                        <div class="category-card">
-                            <span class="category-icon">⛺</span>
-                            <h3>Camping</h3>
-                        </div>
-
-                        <div class="category-card">
-                            <span class="category-icon">⛰️</span>
-                            <h3>Montañas y cerros</h3>
-                        </div>
-
-                        <div class="category-card">
-                            <span class="category-icon">🌺</span>
-                            <h3>Flora y Fauna</h3>
-                        </div>
-
-                        <div class="category-card">
-                            <span class="category-icon">🌊</span>
-                            <h3>Ríos y Cascadas</h3>
-                        </div>
-
-                        <div class="category-card">
-                            <span class="category-icon">⛺</span>
-                            <h3>Camping</h3>
+                    <div class="featured-card">
+                        <div class="featured-content">
+                            <h3>Rutas Mejor Calificadas</h3>
+                            <div class="stars">★★★★★</div>
                         </div>
                     </div>
                 </div>
             </aside>
-
         </div>
     </section>
 
     <section class="trails-explorer">
         <nav class="activity-nav">
-            <h1 class="title_categorias">Explora más categorias</h1>
+            <h1 class="title_categorias">Explora otros departamentos</h1>
 
             <ul class="activity-list">
                 <li class="activity-item">
@@ -267,7 +324,7 @@
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M17 18l-5-5-5 5M17 11l-5-5-5 5" />
                         </svg>
-                        Montañas y cerros
+                        Tolima
                     </a>
                 </li>
                 <li class="activity-item">
@@ -276,7 +333,7 @@
                             <path
                                 d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
-                        Flora y Fauna
+                        Bogota
                     </a>
                 </li>
                 <li class="activity-item">
@@ -289,7 +346,7 @@
                             <path
                                 d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
                         </svg>
-                        Ríos y Cascadas
+                        La Guajira
                     </a>
                 </li>
                 <li class="activity-item">
@@ -298,7 +355,7 @@
                             <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v12a2 2 0 01-2 2z" />
                             <path d="M7 20v-5a2 2 0 012-2h6a2 2 0 012 2v5" />
                         </svg>
-                        Camping
+                        Boyaca
                     </a>
                 </li>
                 <li class="activity-item">
@@ -307,7 +364,16 @@
                             <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v12a2 2 0 01-2 2z" />
                             <path d="M7 20v-5a2 2 0 012-2h6a2 2 0 012 2v5" />
                         </svg>
-                        Arquitectura
+                        Santander
+                    </a>
+                </li>
+                <li class="activity-item">
+                    <a href="#">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v12a2 2 0 01-2 2z" />
+                            <path d="M7 20v-5a2 2 0 012-2h6a2 2 0 012 2v5" />
+                        </svg>
+                        Amazonas
                     </a>
                 </li>
             </ul>

@@ -141,3 +141,14 @@ themeToggle.addEventListener('click', () => {
     const isLight = body.classList.contains('light-mode');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
+
+
+//FUNCIONA PARA FECHAS DE POPULARES
+function scrollGrid(direction) {
+    const grid = document.querySelector('.destinos-grid');
+    const cardWidth = 280 + 16; // Ancho de card + gap
+    grid.scrollBy({
+        left: direction * cardWidth,
+        behavior: 'smooth'
+    });
+}

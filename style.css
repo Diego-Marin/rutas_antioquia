@@ -5,7 +5,6 @@
 /* modo dark*/
 :root {
     /* Modo Dark (Default) */
-    
     --bg-body: #0c0e12;
     --bg-card: #0c0e12;;
     --bg-panel:  #1c2025;;
@@ -31,7 +30,6 @@
     --c_uraba: #fee440; --c_nordeste: #a2d2ff; --c_bajocauca: #ccff33;
     --c_valleaburra: #fb5607; --c_occidente: #00bbf9; --c_norte: #d751c6;
 
- 
     /* ... tus otras variables ... */
     --bg-glow-gradient: radial-gradient(
         circle at center, 
@@ -48,13 +46,20 @@
     --shadow-glow: 0 0 40px var(--accent-glow-color)
 
     /* ... tus otras variables ... */
-    --bg-toggle: var(--bg-card);
+    --bg-toggle: var(var(--accent));
     --text-toggle: var(--platzi-green);
     --border-toggle: rgba(0, 243, 145, 0.3);
+
+
+    /*variables otros departametos*/
+    --bg-card: #121418;
+    --border-ui: rgba(255, 255, 255, 0.08);
+    --accent-color: #00f391;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
 }
 
 body.light-mode {
-   
     /* Gradiente un poco más suave para Light Mode (opcional, o puedes mantener el original) */
     --ticker-text: #0c0e12;
     /* Modo Light */
@@ -88,7 +93,6 @@ body.light-mode {
     --border-toggle: rgb(255, 255, 255);
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -119,7 +123,7 @@ body {
 }
 
 .header-container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -351,116 +355,210 @@ body {
 }
 
 /* ==========================================================================
-   5. ASIDE & CATEGORÍAS
+   5. ASIDE & CATEGORÍAS (FIXED)
    ========================================================================== */
+
+/* Sección 5 Corregida */
 .subregiones-panel {
-    flex: 1;
+    flex: 1; /* Permite que crezca proporcionalmente en el wrapper */
+    min-width: 320px;
+    max-width: 420px;
     padding: 30px;
+    background: var(--bg-body);
+    border-radius: 24px;
+    border: 1px solid var(--border-ui);
     display: flex;
     flex-direction: column;
-    background: var(--bg-card);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 40px rgba(0, 243, 145, 0.08);
+    gap: 10px;
+    box-shadow: var(--shadow-ui);
+    
+    /* EL SECRETO DEL ESPACIO FINAL: */
+    height: 100%; 
+    justify-content: flex-start;
+    overflow-y: auto; 
 }
 
 .panel-title {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-bottom: 15px;
     color: var(--text-main);
+    letter-spacing: -0.5px;
 }
 
 .categories-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 16px;
+    width: 100%;
 }
 
+/* Tarjetas de Categoría */
 .category-card {
-    background: rgba(255, 255, 255, 0.05);
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-ui);
-    border-radius: 16px;
-    padding: 1rem;
+    border-radius: 18px;
+    padding: 15px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    cursor: pointer;
-    text-align: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.category-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-    border-color: var(--accent-color);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.category-icon {
-    font-size: 2rem;
-    margin-bottom: 8px;
+.category-card .icon-wrapper {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
 
 .category-card h3 {
     font-size: 0.9rem;
     font-weight: 500;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Tarjetas Destacadas (Featured) */
+.featured-card {
+    grid-column: span 2; /* Más estable que 1 / -1 */
+    background: linear-gradient(90deg, rgba(0, 243, 145, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(0, 243, 145, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.badge {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+    font-weight: 800;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.featured-card h3 {
+    font-size: 1.1rem;
+    margin: 0 0 8px 0;
     color: var(--text-main);
 }
 
+/* Efectos de Hover */
+.category-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.category-card:hover h3 {
+    color: var(--text-main);
+}
+
+.featured-card:hover {
+    border-color: var(--accent-color);
+    background: rgba(0, 243, 145, 0.08);
+    transform: scale(1.02);
+}
+
+.stars {
+    color: #ffcc00;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.3));
+}
+
 /* ==========================================================================
-   6. RUTAS POPULARES & CARDS
+   6. RUTAS POPULARES & CARDS (FIXED & NAV)
    ========================================================================== */
 .populares {
     width: 100%;
     max-width: 1300px;
-    margin: 0 auto;
     padding: 25px;
-    background: var(--bg-card);
-    border: 2px solid var(--border-ui);
-    box-shadow: 0 0 40px rgba(0, 243, 145, 0.08);
+    background: var(--bg-body); /* Mantenemos tu fondo de panel original */
+    border: 1px solid var(--border-ui);
+    /* box-shadow: 0 0 40px rgba(0, 243, 145, 0.08); */
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    color: var(--text-main);    
 }
 
+/* Header para contener Título y Flechas en la misma línea */
+.header-populares {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.header-populares .title {
+    color: var(--text-main);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Contenedor de Flechas */
+.nav-arrows {
+    display: flex;
+    gap: 10px;
+}
+
+.arrow-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-ui);
+    color: var(--text-main);
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.arrow-btn:hover {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+}
+
+/* Grid con Scroll oculto pero funcional para el JS */
 .destinos-grid {
     display: flex;
     gap: 16px;
     width: 100%;
     overflow-x: auto;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
-    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth; /* Vital para que el salto de la flecha sea fluido */
+    scrollbar-width: none; /* Oculta en Firefox */
 }
 
+.destinos-grid::-webkit-scrollbar {
+    display: none; /* Oculta en Chrome/Safari */
+}
+
+/* Tarjeta: Asegurando que la imagen no desaparezca */
 .card {
     flex: 0 0 280px;
     scroll-snap-align: start;
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    height: 280px;
+    height: 300px; /* Un poco más de aire que antes */
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Esto es lo que hace que la imagen llene el espacio */
+    display: block;
 }
 
 .card-content {
@@ -468,34 +566,24 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
+    padding: 20px;
+    background-color: linear-gradient(to top, rgba(0, 0, 0, 0.9) 30%, transparent 100%);
+    color: white;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 15px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
-    color: white;
-}
-
-.card h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.card p {
-    font-size: 0.85rem;
-    margin: 6px 0;
-    line-height: 1.3;
 }
 
 .btn-card {
     align-self: flex-end;
-    background: var(--accent-color);
+    background: var(--accent);
+    color: #000;
     border: none;
-    padding: 6px 14px;
-    border-radius: 4px;
+    padding: 8px 16px;
+    border-radius: 6px;
     font-weight: bold;
     font-size: 0.8rem;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 /* ==========================================================================
@@ -523,20 +611,37 @@ body {
     z-index: 110;
     width: 45px;
     height: 45px;
-    border-radius: 50%;
-    background: rgba(18, 21, 27, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1.5px solid var(--platzi-green);
+    border-radius: 12px;
+    background: var(--bg-card); /* Usa tu variable de fondo */
+    border: 1.5px solid var(--border-ui);
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
+    
+    /* El color inicial del icono (Verde Neón) */
+    color: var(--accent); 
 }
 
+/* ESTO ES LO QUE TE FALTA: Apuntar al PATH */
+.back-circle svg {
+    width: 24px;
+    height: 24px;
+    fill: none; /* Asegura que no se rellene de negro */
+}
+
+.back-circle svg path {
+    stroke: currentColor; /* El path toma el color del texto del botón */
+    stroke-width: 3;
+}
+
+/* EL HOVER QUE SÍ FUNCIONA */
 .back-circle:hover {
-    background: var(--platzi-green);
-    transform: scale(1.1) rotate(-15deg);
+    background: var(--accent) !important; /* Fondo verde neón */
+    color: #000000 !important;           /* Icono NEGRO para contraste */
+    transform: scale(1.1) translateX(-3px);
+    border-color: var(--accent);
 }
 
 .region-list {
@@ -571,71 +676,86 @@ body {
 /* ==========================================================================
    8. TRAILS EXPLORER & FOOTER
    ========================================================================== */
+
 .trails-explorer {
     color: var(--text-main);
-    min-height: 180px;
+    min-height: 140px; /* Reducido para que sea una transición elegante, no un bloque pesado */
     display: flex;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     position: relative;
     width: 100%;
-
     overflow: hidden;
-    background-color: var(--bg-panel);
+    background-color: var(--bg-panel); /* Cambiado a body para que se integre */
+    border-top: 1px solid var(--border-ui);
+    border-bottom: 1px solid var(--border-ui);
 }
 
 .activity-nav {
     width: 100%;
     max-width: 1300px;
-    gap: 20px;
+    padding:  40px;
     display: flex;
-    justify-content:space-between;
     align-items: center;
-    flex-direction: row;
+    justify-content: center;
+    flex-direction: row; /* Título arriba, botones abajo */
+    gap: 20px;
+    z-index: 1;
 }
 
 .activity-list {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
+    justify-content: flex-start; /* Alineado a la izquierda para scroll natural */
+    gap: 10px;
     list-style: none;
-    padding: 10px 0 0 0;
-    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.activity-list::-webkit-scrollbar {
+    display: none;
 }
 
 .activity-item a {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 22px;
-    color: var(--text-main);
+    gap: 12px;
+    padding: 12px 24px;
+    color: var(--text-muted); /* Texto suave inicialmente */
     text-decoration: none;
+    font-size: 0.9rem;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 12px; /* Match con el radio de las cards */
     background: var(--bg-card);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-ui);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
 }
 
 .activity-item a:hover {
-    color: #eaeaea;
-    background: rgba(0, 243, 145, 0.05);
-    border-color: rgb(177, 187, 214);
-    transform: translateY(-2px);
+    color: var(--accent);
+    background: rgba(0, 243, 145, 0.03);
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Estado activo (para cuando se seleccione una categoría) */
+.activity-item a.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
 }
 
 .bg-shape-svg {
     position: absolute;
-    bottom: -170px;
-    left: 0;
-    width: 500px;
-    height: auto;
-    opacity: 0.15;
-    z-index: 0;
+    right: -50px; /* Movido a la derecha para equilibrar el peso visual */
+    top: -50%;
+    width: 600px;
+    opacity: 0.05; /* Menos opacidad para que no distraiga del texto */
     pointer-events: none;
-    transform: rotate(-15deg);
+    filter: blur(40px); /* Desenfoque para que parezca una iluminación ambiental */
 }
 
 .main-footer {
@@ -645,7 +765,7 @@ body {
 }
 
 .footer-container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -659,6 +779,14 @@ body {
     align-items: center;
 }
 
+.title_categorias{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/*FOOTER*/
+
 .footer-socials {
     display: flex;
     flex-direction: row;
@@ -669,6 +797,7 @@ body {
     color: var(--platzi-green);
     transform: translateY(-3px);
 }
+
 
 /* ==========================================================================
    9. RESPONSIVIDAD (MEDIA QUERIES)
