@@ -6,8 +6,10 @@
 :root {
     /* Modo Dark (Default) */
     --bg-body: #0c0e12;
-    --bg-card: #0c0e12;;
-    --bg-panel:  #1c2025;;
+    --bg-card: #0c0e12;
+    ;
+    --bg-panel: #1c2025;
+    ;
     --accent: #00f391;
     --text-main: #ffffff;
     --text-dim: rgba(53, 59, 71, 0.6);
@@ -16,8 +18,8 @@
     --header: #12151b;
     --footer: #0c0e12;
     --social: #ffffff;
-    --text-header:#00f391;
-    
+    --text-header: #00f391;
+
     /* Gradiente Mapa */
     --map-grad-1: rgba(0, 243, 146, 0.05);
     --map-grad-2: #0c0e12;
@@ -26,27 +28,30 @@
     --ticker-text: #12151b;
 
     /* Colores Mapa (Vibrantes para fondo oscuro) */
-    --c_oriente: #00f5d4; --c_suroeste: #f1b35b; --c_magdalena: #44e33e;
-    --c_uraba: #fee440; --c_nordeste: #a2d2ff; --c_bajocauca: #ccff33;
-    --c_valleaburra: #fb5607; --c_occidente: #00bbf9; --c_norte: #d751c6;
+    --c_oriente: #00f5d4;
+    --c_suroeste: #f1b35b;
+    --c_magdalena: #44e33e;
+    --c_uraba: #fee440;
+    --c_nordeste: #a2d2ff;
+    --c_bajocauca: #ccff33;
+    --c_valleaburra: #fb5607;
+    --c_occidente: #00bbf9;
+    --c_norte: #d751c6;
 
     /* ... tus otras variables ... */
-    --bg-glow-gradient: radial-gradient(
-        circle at center, 
-        rgba(0, 243, 146, 0.056) 30%, 
-        #0c0e12 70%
-    );
+    --bg-glow-gradient: radial-gradient(circle at center,
+            rgba(0, 243, 146, 0.056) 30%,
+            #0c0e12 70%);
 
     /* ... otras variables ... */
-    
+
     /* El color de la sombra (glow) separado para mayor control */
     --accent-glow-color: rgba(0, 243, 145, 0.08);
-    
+
     /* La variable solicitada */
     --shadow-glow: 0 0 40px var(--accent-glow-color)
-
-    /* ... tus otras variables ... */
-    --bg-toggle: var(var(--accent));
+        /* ... tus otras variables ... */
+        --bg-toggle: var(var(--accent));
     --text-toggle: var(--platzi-green);
     --border-toggle: rgba(0, 243, 145, 0.3);
 
@@ -66,26 +71,33 @@ body.light-mode {
     --bg-body: #f3f3f3;
     --bg-card: #ffffff;
     --bg-panel: #e8e8e8;
-    --accent: #ffdc72; /* Verde más oscuro para contraste en blanco */
+    --accent: #ffdc72;
+    /* Verde más oscuro para contraste en blanco */
     --text-main: #1c212c;
     --text-dim: #5c6b84;
     --border-ui: rgba(0, 0, 0, 0.1);
     --shadow-ui: rgba(0, 0, 0, 0.05);
     --footer: #00c562;
-    --header:#00c562;
+    --header: #00c562;
     --social: #ffffff;
-    --text-header:#ffffff;
+    --text-header: #ffffff;
 
     /* Gradiente Mapa Light */
     --map-grad-1: #ffffff;
     --map-grad-2: #d1d9e6;
-    
- /* Colores Mapa (Vibrantes para fondo oscuro) */
-    --c_oriente: #0ed8bd; --c_suroeste: #f1b35b; --c_magdalena: #44e33e;
-    --c_uraba: #ffe646fb; --c_nordeste: #7daedc; --c_bajocauca: #b1dd2c;
-    --c_valleaburra: #fb5607; --c_occidente: #00bbf9; --c_norte: #d751c6;
+
+    /* Colores Mapa (Vibrantes para fondo oscuro) */
+    --c_oriente: #0ed8bd;
+    --c_suroeste: #f1b35b;
+    --c_magdalena: #44e33e;
+    --c_uraba: #ffe646fb;
+    --c_nordeste: #7daedc;
+    --c_bajocauca: #b1dd2c;
+    --c_valleaburra: #fb5607;
+    --c_occidente: #00bbf9;
+    --c_norte: #d751c6;
     /* Ajuste del gradiente de fondo para el mapa */
-    --bg-glow-gradient:white;
+    --bg-glow-gradient: white;
 
     /* ... tus otras variables de luz ... */
     --bg-toggle: #dcffed;
@@ -105,19 +117,52 @@ html {
 }
 
 body {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    line-height: 1.5;
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
     color: #f6f6f6;
     background-color: var(--bg-body);
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
+
+/* ==========================================================================
+   10. FIX DEFINITIVO – VISTA FINAL / ESPACIO EN BLANCO
+   ========================================================================== */
+
+#app-main {
+    display: block;
+    /* Cambia de flex a block para evitar conflictos de alineación vertical con contenido dinámico */
+    width: 100%;
+    min-height: 100vh;
+}
+
+#final-section {
+    display: none;
+    flex: 1;
+    width: 100%;
+}
+
+#final-section>section {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+#final-section .view {
+    padding-block: 0;
+}
+
+
 
 /* ==========================================================================
    2. HEADER
    ========================================================================== */
 .main-header {
     background-color: var(--header);
-    color:var(--text-header);
+    color: var(--text-header);
     padding: 15px 5%;
     font-family: 'Inter', sans-serif;
 }
@@ -168,7 +213,8 @@ body {
     cursor: pointer;
     width: 40px;
     height: 40px;
-    border-radius: 10px; /* Un toque menos circular, más moderno */
+    border-radius: 10px;
+    /* Un toque menos circular, más moderno */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -181,12 +227,22 @@ body {
 }
 
 /* Control de visibilidad de los iconos */
-.theme-switch .icon-sun { display: none; }
-.theme-switch .icon-moon { display: block; }
+.theme-switch .icon-sun {
+    display: none;
+}
+
+.theme-switch .icon-moon {
+    display: block;
+}
 
 /* Inversión en Light Mode */
-.light-mode .theme-switch .icon-sun { display: block; }
-.light-mode .theme-switch .icon-moon { display: none; }
+.light-mode .theme-switch .icon-sun {
+    display: block;
+}
+
+.light-mode .theme-switch .icon-moon {
+    display: none;
+}
 
 /* Aseguramos que el SVG herede el color */
 .theme-switch svg {
@@ -206,7 +262,7 @@ body {
 
 .ticker-banner {
     width: 100%;
-    height: 50px;
+    height: 40px;
     background-color: var(--accent);
     overflow: hidden;
     display: flex;
@@ -225,7 +281,7 @@ body {
     display: inline-block;
     padding-left: 20px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: #12151b;
     text-transform: uppercase;
@@ -234,8 +290,13 @@ body {
 }
 
 @keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 /* ==========================================================================
@@ -260,6 +321,9 @@ body {
     max-width: 1300px;
     height: 85vh;
     margin: 0 auto;
+
+    /* ELIMINA height: 85vh; -> Esto es lo que crea el hueco si el contenido interno falla */
+    min-height: 70vh;
 }
 
 .map-viewport {
@@ -308,7 +372,7 @@ body {
 }
 
 #map-container {
-    width: 100%; 
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -320,38 +384,61 @@ body {
 #map-container svg {
     width: auto;
     height: auto;
-    max-width: 50vw; 
+    max-width: 50vw;
     max-height: 70vh;
     display: block;
     margin: auto;
-    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.2));
     transition: all 0.3s ease;
 }
 
-.fil0 { fill: var(--c_oriente); }
-.fil1 { fill: var(--c_suroeste); }
-.fil2 { fill: var(--c_magdalena); }
-.fil3 { fill: var(--c_uraba); }
-.fil4 { fill: var(--c_nordeste); }
-.fil5 { fill: var(--c_bajocauca); }
-.fil6 { fill: var(--c_valleaburra); }
-.fil7 { fill: var(--c_occidente); }
-.fil8 { fill: var(--c_norte); }
+.fil0 {
+    fill: var(--c_oriente);
+}
 
-.map-svg svg path, 
+.fil1 {
+    fill: var(--c_suroeste);
+}
+
+.fil2 {
+    fill: var(--c_magdalena);
+}
+
+.fil3 {
+    fill: var(--c_uraba);
+}
+
+.fil4 {
+    fill: var(--c_nordeste);
+}
+
+.fil5 {
+    fill: var(--c_bajocauca);
+}
+
+.fil6 {
+    fill: var(--c_valleaburra);
+}
+
+.fil7 {
+    fill: var(--c_occidente);
+}
+
+.fil8 {
+    fill: var(--c_norte);
+}
+
+.map-svg svg path,
 .map-svg svg polygon,
 #map-container svg path,
 #map-container svg polygon {
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    stroke-width: 1px;
-    stroke: rgba(255, 255, 255, 0.2);
 }
 
 #map-container svg path:hover,
 #map-container svg polygon:hover {
-    fill: #00f391 !important;
-    filter: drop-shadow(0 0 15px rgba(0, 243, 145, 0.8));
+    fill: #00f391;
 }
 
 /* ==========================================================================
@@ -360,7 +447,8 @@ body {
 
 /* Sección 5 Corregida */
 .subregiones-panel {
-    flex: 1; /* Permite que crezca proporcionalmente en el wrapper */
+    flex: 1;
+    /* Permite que crezca proporcionalmente en el wrapper */
     min-width: 320px;
     max-width: 420px;
     padding: 30px;
@@ -371,11 +459,11 @@ body {
     flex-direction: column;
     gap: 10px;
     box-shadow: var(--shadow-ui);
-    
+
     /* EL SECRETO DEL ESPACIO FINAL: */
-    height: 100%; 
+    height: 100%;
     justify-content: flex-start;
-    overflow-y: auto; 
+    overflow-y: auto;
 }
 
 .panel-title {
@@ -410,7 +498,7 @@ body {
 
 .category-card .icon-wrapper {
     font-size: 1.8rem;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 .category-card h3 {
@@ -422,7 +510,8 @@ body {
 
 /* Tarjetas Destacadas (Featured) */
 .featured-card {
-    grid-column: span 2; /* Más estable que 1 / -1 */
+    grid-column: span 2;
+    /* Más estable que 1 / -1 */
     background: linear-gradient(90deg, rgba(0, 243, 145, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
     border: 1px solid rgba(0, 243, 145, 0.2);
     border-radius: 20px;
@@ -477,7 +566,8 @@ body {
     width: 100%;
     max-width: 1300px;
     padding: 25px;
-    background: var(--bg-body); /* Mantenemos tu fondo de panel original */
+    background: var(--bg-body);
+    /* Mantenemos tu fondo de panel original */
     border: 1px solid var(--border-ui);
     /* box-shadow: 0 0 40px rgba(0, 243, 145, 0.08); */
     border-radius: 20px;
@@ -534,12 +624,15 @@ body {
     overflow-x: auto;
     padding-bottom: 10px;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth; /* Vital para que el salto de la flecha sea fluido */
-    scrollbar-width: none; /* Oculta en Firefox */
+    scroll-behavior: smooth;
+    /* Vital para que el salto de la flecha sea fluido */
+    scrollbar-width: none;
+    /* Oculta en Firefox */
 }
 
 .destinos-grid::-webkit-scrollbar {
-    display: none; /* Oculta en Chrome/Safari */
+    display: none;
+    /* Oculta en Chrome/Safari */
 }
 
 /* Tarjeta: Asegurando que la imagen no desaparezca */
@@ -549,7 +642,8 @@ body {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    height: 300px; /* Un poco más de aire que antes */
+    height: 300px;
+    /* Un poco más de aire que antes */
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -557,7 +651,8 @@ body {
 .card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Esto es lo que hace que la imagen llene el espacio */
+    object-fit: cover;
+    /* Esto es lo que hace que la imagen llene el espacio */
     display: block;
 }
 
@@ -590,18 +685,33 @@ body {
    7. UI COMPONENTS (TOOLTIP, BACK BUTTON, LISTS)
    ========================================================================== */
 #tooltip {
-    position: absolute;
-    display: none;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 4px;
+    position: fixed;
     pointer-events: none;
-    font-size: 18px;
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: system-ui, sans-serif;
+    white-space: nowrap;
     opacity: 0;
-    transform: scale(0.6);
-    transition: opacity 0.12s ease-out, transform 0.18s cubic-bezier(.34, 1.56, .64, 1);
+    transform: scale(0.9) translateY(6px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    z-index: 9999;
+}
+
+#tooltip.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* highlight opcional */
+.tooltip-target {
+    cursor: pointer;
+}
+
+.tooltip-target:hover {
+    filter: brightness(1.1);
 }
 
 .back-circle {
@@ -612,34 +722,39 @@ body {
     width: 45px;
     height: 45px;
     border-radius: 12px;
-    background: var(--bg-card); /* Usa tu variable de fondo */
+    background: var(--bg-card);
+    /* Usa tu variable de fondo */
     border: 1.5px solid var(--border-ui);
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-    
+
     /* El color inicial del icono (Verde Neón) */
-    color: var(--accent); 
+    color: var(--accent);
 }
 
 /* ESTO ES LO QUE TE FALTA: Apuntar al PATH */
 .back-circle svg {
     width: 24px;
     height: 24px;
-    fill: none; /* Asegura que no se rellene de negro */
+    fill: none;
+    /* Asegura que no se rellene de negro */
 }
 
 .back-circle svg path {
-    stroke: currentColor; /* El path toma el color del texto del botón */
+    stroke: currentColor;
+    /* El path toma el color del texto del botón */
     stroke-width: 3;
 }
 
 /* EL HOVER QUE SÍ FUNCIONA */
 .back-circle:hover {
-    background: var(--accent) !important; /* Fondo verde neón */
-    color: #000000 !important;           /* Icono NEGRO para contraste */
+    background: var(--accent) !important;
+    /* Fondo verde neón */
+    color: #000000 !important;
+    /* Icono NEGRO para contraste */
     transform: scale(1.1) translateX(-3px);
     border-color: var(--accent);
 }
@@ -679,14 +794,16 @@ body {
 
 .trails-explorer {
     color: var(--text-main);
-    min-height: 140px; /* Reducido para que sea una transición elegante, no un bloque pesado */
+    min-height: 140px;
+    /* Reducido para que sea una transición elegante, no un bloque pesado */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     width: 100%;
     overflow: hidden;
-    background-color: var(--bg-panel); /* Cambiado a body para que se integre */
+    background-color: var(--bg-panel);
+    /* Cambiado a body para que se integre */
     border-top: 1px solid var(--border-ui);
     border-bottom: 1px solid var(--border-ui);
 }
@@ -694,11 +811,12 @@ body {
 .activity-nav {
     width: 100%;
     max-width: 1300px;
-    padding:  40px;
+    padding: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row; /* Título arriba, botones abajo */
+    flex-direction: row;
+    /* Título arriba, botones abajo */
     gap: 20px;
     z-index: 1;
 }
@@ -706,7 +824,8 @@ body {
 .activity-list {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Alineado a la izquierda para scroll natural */
+    justify-content: flex-start;
+    /* Alineado a la izquierda para scroll natural */
     gap: 10px;
     list-style: none;
 
@@ -722,11 +841,13 @@ body {
     align-items: center;
     gap: 12px;
     padding: 12px 24px;
-    color: var(--text-muted); /* Texto suave inicialmente */
+    color: var(--text-muted);
+    /* Texto suave inicialmente */
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 600;
-    border-radius: 12px; /* Match con el radio de las cards */
+    border-radius: 12px;
+    /* Match con el radio de las cards */
     background: var(--bg-card);
     border: 1px solid var(--border-ui);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -750,12 +871,15 @@ body {
 
 .bg-shape-svg {
     position: absolute;
-    right: -50px; /* Movido a la derecha para equilibrar el peso visual */
+    right: -50px;
+    /* Movido a la derecha para equilibrar el peso visual */
     top: -50%;
     width: 600px;
-    opacity: 0.05; /* Menos opacidad para que no distraiga del texto */
+    opacity: 0.05;
+    /* Menos opacidad para que no distraiga del texto */
     pointer-events: none;
-    filter: blur(40px); /* Desenfoque para que parezca una iluminación ambiental */
+    filter: blur(40px);
+    /* Desenfoque para que parezca una iluminación ambiental */
 }
 
 .main-footer {
@@ -773,13 +897,13 @@ body {
 }
 
 .social-link {
-    color: var(--social );
+    color: var(--social);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
 }
 
-.title_categorias{
+.title_categorias {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-main);
@@ -826,5 +950,3 @@ body {
         text-align: center;
     }
 }
-
-
