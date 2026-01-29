@@ -253,11 +253,24 @@ body {
    3. HERO, BANNER & MARQUESINA
    ========================================================================== */
 .hero-banner {
-    background-image: url('assets/banner.png');
+    background-image: url('assets/13.jpg');
+    /* 1. Centra la imagen horizontal y verticalmente */
+    background-position: center; 
+    /* 2. Asegura que la imagen cubra todo el contenedor sin deformarse */
+    background-size: cover; 
+    /* 3. Evita que la imagen se repita si el contenedor es más grande */
+    background-repeat: no-repeat; 
+
     padding: 60px 20px;
     min-height: 315px;
     text-align: center;
     color: #0c1633;
+    
+    /* Bonus: Centrado de contenido interno (texto) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .ticker-banner {
@@ -662,7 +675,8 @@ body {
     left: 0;
     right: 0;
     padding: 20px;
-    background-color: linear-gradient(to top, rgba(0, 0, 0, 0.9) 30%, transparent 100%);
+    /* CAMBIO CRÍTICO: Usa 'background' o 'background-image' */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 30%, transparent 100%);
     color: white;
     display: flex;
     flex-direction: column;
