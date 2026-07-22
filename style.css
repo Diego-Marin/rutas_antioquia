@@ -1,966 +1,219 @@
-/* ==========================================================================
-   1. CONFIGURACIÓN GLOBAL Y VARIABLES 
-   ========================================================================== */
+:root{
+  --bg:            #0b0d10;
+  --surface:       #14171c;
+  --surface-2:     #1b1f26;
+  --border:        rgba(255,255,255,.08);
+  --text:          #f5f6f7;
+  --text-dim:      #8b93a1;
+  --accent:        #00f391;
+  --accent-soft:   rgba(0,243,145,.14);
+  --accent-text:   #06140f;
+  --region-base:   #262b33;
+  --region-hover:  #333944;
+  --radius-lg:     20px;
+  --radius-md:     14px;
+  --header-h:      56px;
+}
+
+body.light{
+  --bg:            #f4f5f7;
+  --surface:       #ffffff;
+  --surface-2:     #eef0f3;
+  --border:        rgba(0,0,0,.08);
+  --text:          #14171c;
+  --text-dim:      #6b7280;
+  --accent:        #00b46e;
+  --accent-soft:   rgba(0,180,110,.12);
+  --accent-text:   #ffffff;
+  --region-base:   #dde1e6;
+  --region-hover:  #cfd4db;
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ -webkit-tap-highlight-color: transparent; }
+
+body{
+  font-family: 'Inter','Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overscroll-behavior-y: none;
+}
+
+/* TOPBAR MOBILE OPTIMIZED */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbar-left{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.logo-dot{
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.progress-pill{
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(0,243,145,.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.topbar-actions{ display:flex; gap:8px; }
+
+.icon-btn{
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
 
-/* modo dark*/
-:root {
-    /* Modo Dark (Default) */
-    --bg-body: #0c0e12;
-    --bg-card: #0c0e12;
-    ;
-    --bg-panel: #1c2025;
-    ;
-    --accent: #00f391;
-    --text-main: #ffffff;
-    --text-dim: rgba(53, 59, 71, 0.6);
-    --border-ui: rgba(255, 255, 255, 0.1);
-    --shadow-ui: rgba(0, 0, 0, 0.5);
-    --header: #12151b;
-    --footer: #0c0e12;
-    --social: #ffffff;
-    --text-header: #00f391;
+.progress-track{ height: 3px; background: var(--surface-2); }
+.progress-fill{ height: 100%; width: 0%; background: var(--accent); transition: width .25s ease; }
 
-    /* Gradiente Mapa */
-    --map-grad-1: rgba(0, 243, 146, 0.05);
-    --map-grad-2: #0c0e12;
-
-    /* Gradiente vibrante para Dark Mode */
-    --ticker-text: #12151b;
-
-    /* Colores Mapa (Vibrantes para fondo oscuro) */
-    --c_oriente: #00f5d4;
-    --c_suroeste: #f1b35b;
-    --c_magdalena: #44e33e;
-    --c_uraba: #fee440;
-    --c_nordeste: #a2d2ff;
-    --c_bajocauca: #ccff33;
-    --c_valleaburra: #fb5607;
-    --c_occidente: #00bbf9;
-    --c_norte: #d751c6;
-
-    /* ... tus otras variables ... */
-    --bg-glow-gradient: radial-gradient(circle at center,
-            rgba(0, 243, 146, 0.056) 30%,
-            #0c0e12 70%);
-
-    /* ... otras variables ... */
-
-    /* El color de la sombra (glow) separado para mayor control */
-    --accent-glow-color: rgba(0, 243, 145, 0.08);
-
-    /* La variable solicitada */
-    --shadow-glow: 0 0 40px var(--accent-glow-color)
-        /* ... tus otras variables ... */
-        --bg-toggle: var(var(--accent));
-    --text-toggle: var(--platzi-green);
-    --border-toggle: rgba(0, 243, 145, 0.3);
-
-
-    /*variables otros departametos*/
-    --bg-card: #121418;
-    --border-ui: rgba(255, 255, 255, 0.08);
-    --accent-color: #00f391;
-    --text-main: #ffffff;
-    --text-muted: #a0a0a0;
-}
-
-body.light-mode {
-    /* Gradiente un poco más suave para Light Mode (opcional, o puedes mantener el original) */
-    --ticker-text: #0c0e12;
-    /* Modo Light */
-    --bg-body: #f3f3f3;
-    --bg-card: #ffffff;
-    --bg-panel: #e8e8e8;
-    --accent: #ffdc72;
-    /* Verde más oscuro para contraste en blanco */
-    --text-main: #1c212c;
-    --text-dim: #5c6b84;
-    --border-ui: rgba(0, 0, 0, 0.1);
-    --shadow-ui: rgba(0, 0, 0, 0.05);
-    --footer: #00c562;
-    --header: #00c562;
-    --social: #ffffff;
-    --text-header: #ffffff;
-
-    /* Gradiente Mapa Light */
-    --map-grad-1: #ffffff;
-    --map-grad-2: #d1d9e6;
-
-    /* Colores Mapa (Vibrantes para fondo oscuro) */
-    --c_oriente: #0ed8bd;
-    --c_suroeste: #f1b35b;
-    --c_magdalena: #44e33e;
-    --c_uraba: #ffe646fb;
-    --c_nordeste: #7daedc;
-    --c_bajocauca: #b1dd2c;
-    --c_valleaburra: #fb5607;
-    --c_occidente: #00bbf9;
-    --c_norte: #d751c6;
-    /* Ajuste del gradiente de fondo para el mapa */
-    --bg-glow-gradient: white;
-
-    /* ... tus otras variables de luz ... */
-    --bg-toggle: #dcffed;
-    --text-toggle: #ffffff;
-    --border-toggle: rgb(255, 255, 255);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 92%;
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    line-height: 1.6;
-    color: #f6f6f6;
-    background-color: var(--bg-body);
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-/* ==========================================================================
-   10. FIX DEFINITIVO – VISTA FINAL / ESPACIO EN BLANCO
-   ========================================================================== */
-
-#app-main {
-    display: block;
-    /* Cambia de flex a block para evitar conflictos de alineación vertical con contenido dinámico */
-    width: 100%;
-    min-height: 100vh;
-}
-
-#final-section {
-    display: none;
-    flex: 1;
-    width: 100%;
-}
-
-#final-section>section {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-#final-section .view {
-    padding-block: 0;
-}
-
-
-
-/* ==========================================================================
-   2. HEADER
-   ========================================================================== */
-.main-header {
-    background-color: var(--header);
-    color: var(--text-header);
-    padding: 15px 5%;
-    font-family: 'Inter', sans-serif;
-}
-
-.header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.left-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex: 1;
-}
-
-.logo {
-    color: var(--text-header);
-    font-weight: bold;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 25px;
-    margin: 0 30px;
-}
-
-.nav-item {
-    color: white;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-/* Estilo del Botón */
-.theme-switch {
-    background: transparent;
-    border: 2px solid var(--border-toggle);
-    color: var(--text-toggle);
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    /* Un toque menos circular, más moderno */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.theme-switch:hover {
-    background: rgba(0, 243, 145, 0.1);
-    border-color: var(--platzi-green);
-}
-
-/* Control de visibilidad de los iconos */
-.theme-switch .icon-sun {
-    display: none;
-}
-
-.theme-switch .icon-moon {
-    display: block;
-}
-
-/* Inversión en Light Mode */
-.light-mode .theme-switch .icon-sun {
-    display: block;
-}
-
-.light-mode .theme-switch .icon-moon {
-    display: none;
-}
-
-/* Aseguramos que el SVG herede el color */
-.theme-switch svg {
-    stroke: currentColor;
-}
-
-/* ==========================================================================
-   3. HERO, BANNER & MARQUESINA
-   ========================================================================== */
-.hero-banner {
-    background-image: url('assets/13.jpg');
-    /* 1. Centra la imagen horizontal y verticalmente */
-    background-position: center; 
-    /* 2. Asegura que la imagen cubra todo el contenedor sin deformarse */
-    background-size: cover; 
-    /* 3. Evita que la imagen se repita si el contenedor es más grande */
-    background-repeat: no-repeat; 
-
-    padding: 60px 20px;
-    min-height: 315px;
-    text-align: center;
-    color: #0c1633;
-    
-    /* Bonus: Centrado de contenido interno (texto) */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.ticker-banner {
-    width: 100%;
-    height: 40px;
-    background-color: var(--accent);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    position: relative;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.ticker-wrapper {
-    display: flex;
-    white-space: nowrap;
-}
-
-.ticker-item {
-    display: inline-block;
-    padding-left: 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #12151b;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    animation: ticker 30s linear infinite;
-}
-
-@keyframes ticker {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-/* ==========================================================================
-   4. MAP EXPLORER (CONTENEDOR & VIEWPORT)
-   ========================================================================== */
-#map-explorer {
-    background-color: var(--bg-map);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px;
-    gap: 40px;
-    width: 100%;
-}
-
-.explorer-wrapper {
-    align-items: stretch;
-    box-sizing: border-box;
-    gap: 20px;
-    display: flex;
-    width: 100%;
-    max-width: 1300px;
-    height: 85vh;
-    margin: 0 auto;
-
-    /* ELIMINA height: 85vh; -> Esto es lo que crea el hueco si el contenido interno falla */
-    min-height: 70vh;
-}
-
-.map-viewport {
-    flex-direction: column;
-    gap: 20px;
-    background: var(--bg-map);
-    border-radius: 20px;
-    border: 1px solid var(--border-ui);
-    box-shadow: var(--shadow-glow);
-    width: 100%;
-    height: 100%;
-    min-width: 600px;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-    flex: 4;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding-top: 15px;
-    background: var(--bg-glow-gradient);
-}
-
-.map-viewport svg {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 90vh;
-}
-
-.map-svg {
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    height: 100%;
-    min-width: 600px;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-    flex: 4;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-#map-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-#map-container svg {
-    width: auto;
-    height: auto;
-    max-width: 50vw;
-    max-height: 70vh;
-    display: block;
-    margin: auto;
-    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.2));
-    transition: all 0.3s ease;
-}
-
-.fil0 {
-    fill: var(--c_oriente);
-}
-
-.fil1 {
-    fill: var(--c_suroeste);
-}
-
-.fil2 {
-    fill: var(--c_magdalena);
-}
-
-.fil3 {
-    fill: var(--c_uraba);
-}
-
-.fil4 {
-    fill: var(--c_nordeste);
-}
-
-.fil5 {
-    fill: var(--c_bajocauca);
-}
-
-.fil6 {
-    fill: var(--c_valleaburra);
-}
-
-.fil7 {
-    fill: var(--c_occidente);
-}
-
-.fil8 {
-    fill: var(--c_norte);
-}
-
-.map-svg svg path,
-.map-svg svg polygon,
-#map-container svg path,
-#map-container svg polygon {
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#map-container svg path:hover,
-#map-container svg polygon:hover {
-    fill: #00f391;
-}
-
-/* ==========================================================================
-   5. ASIDE & CATEGORÍAS (FIXED)
-   ========================================================================== */
-
-/* Sección 5 Corregida */
-.subregiones-panel {
-    flex: 1;
-    /* Permite que crezca proporcionalmente en el wrapper */
-    min-width: 320px;
-    max-width: 420px;
-    padding: 30px;
-    background: var(--bg-body);
-    border-radius: 24px;
-    border: 1px solid var(--border-ui);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: var(--shadow-ui);
-
-    /* EL SECRETO DEL ESPACIO FINAL: */
-    height: 100%;
-    justify-content: flex-start;
-    overflow-y: auto;
-}
-
-.panel-title {
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: var(--text-main);
-    letter-spacing: -0.5px;
-}
-
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    width: 100%;
-}
-
-/* Tarjetas de Categoría */
-.category-card {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border-ui);
-    border-radius: 18px;
-    padding: 15px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.category-card .icon-wrapper {
-    font-size: 1.8rem;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-}
-
-.category-card h3 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    margin: 0;
-}
-
-/* Tarjetas Destacadas (Featured) */
-.featured-card {
-    grid-column: span 2;
-    /* Más estable que 1 / -1 */
-    background: linear-gradient(90deg, rgba(0, 243, 145, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-    border: 1px solid rgba(0, 243, 145, 0.2);
-    border-radius: 20px;
-    padding: 20px;
-    transition: all 0.3s ease;
-}
-
-.badge {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent-color);
-    font-weight: 800;
-    margin-bottom: 8px;
-    display: block;
-}
-
-.featured-card h3 {
-    font-size: 1.1rem;
-    margin: 0 0 8px 0;
-    color: var(--text-main);
-}
-
-/* Efectos de Hover */
-.category-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--accent-color);
-    transform: translateY(-5px);
-}
-
-.category-card:hover h3 {
-    color: var(--text-main);
-}
-
-.featured-card:hover {
-    border-color: var(--accent-color);
-    background: rgba(0, 243, 145, 0.08);
-    transform: scale(1.02);
-}
-
-.stars {
-    color: #ffcc00;
-    font-size: 1.4rem;
-    letter-spacing: 3px;
-    filter: drop-shadow(0 0 5px rgba(255, 204, 0, 0.3));
-}
-
-/* ==========================================================================
-   6. RUTAS POPULARES & CARDS (FIXED & NAV)
-   ========================================================================== */
-.populares {
-    width: 100%;
-    max-width: 1300px;
-    padding: 25px;
-    background: var(--bg-body);
-    /* Mantenemos tu fondo de panel original */
-    border: 1px solid var(--border-ui);
-    /* box-shadow: 0 0 40px rgba(0, 243, 145, 0.08); */
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Header para contener Título y Flechas en la misma línea */
-.header-populares {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 5px;
-}
-
-.header-populares .title {
-    color: var(--text-main);
-    font-size: 1.5rem;
-    margin: 0;
-}
-
-/* Contenedor de Flechas */
-.nav-arrows {
-    display: flex;
-    gap: 10px;
-}
-
-.arrow-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-ui);
-    color: var(--text-main);
-    width: 38px;
-    height: 38px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.arrow-btn:hover {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
-}
-
-/* Grid con Scroll oculto pero funcional para el JS */
-.destinos-grid {
-    display: flex;
-    gap: 16px;
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    /* Vital para que el salto de la flecha sea fluido */
-    scrollbar-width: none;
-    /* Oculta en Firefox */
-}
-
-.destinos-grid::-webkit-scrollbar {
-    display: none;
-    /* Oculta en Chrome/Safari */
-}
-
-/* Tarjeta: Asegurando que la imagen no desaparezca */
-.card {
-    flex: 0 0 280px;
-    scroll-snap-align: start;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    height: 300px;
-    /* Un poco más de aire que antes */
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Esto es lo que hace que la imagen llene el espacio */
-    display: block;
-}
-
-.card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20px;
-    /* CAMBIO CRÍTICO: Usa 'background' o 'background-image' */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 30%, transparent 100%);
-    color: white;
-    display: flex;
-    flex-direction: column;
-}
-
-.btn-card {
-    align-self: flex-end;
-    background: var(--accent);
-    color: #000;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 0.8rem;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-/* ==========================================================================
-   7. UI COMPONENTS (TOOLTIP, BACK BUTTON, LISTS)
-   ========================================================================== */
-#tooltip {
-    position: fixed;
-    pointer-events: none;
-    background: rgba(0, 0, 0, 0.85);
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: system-ui, sans-serif;
-    white-space: nowrap;
-    opacity: 0;
-    transform: scale(0.9) translateY(6px);
-    transition: opacity 0.15s ease, transform 0.15s ease;
-    z-index: 9999;
-}
-
-#tooltip.visible {
-    opacity: 1;
-    transform: scale(1) translateY(0);
+/* LAYOUT MOBILE FIRST */
+.app-main{
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 12px;
+  padding-bottom: 90px;
 }
 
-/* highlight opcional */
-.tooltip-target {
-    cursor: pointer;
-}
-
-.tooltip-target:hover {
-    filter: brightness(1.1);
-}
-
-.back-circle {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    z-index: 110;
-    width: 45px;
-    height: 45px;
-    border-radius: 12px;
-    background: var(--bg-card);
-    /* Usa tu variable de fondo */
-    border: 1.5px solid var(--border-ui);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-
-    /* El color inicial del icono (Verde Neón) */
-    color: var(--accent);
-}
-
-/* ESTO ES LO QUE TE FALTA: Apuntar al PATH */
-.back-circle svg {
-    width: 24px;
-    height: 24px;
-    fill: none;
-    /* Asegura que no se rellene de negro */
-}
-
-.back-circle svg path {
-    stroke: currentColor;
-    /* El path toma el color del texto del botón */
-    stroke-width: 3;
-}
-
-/* EL HOVER QUE SÍ FUNCIONA */
-.back-circle:hover {
-    background: var(--accent) !important;
-    /* Fondo verde neón */
-    color: #000000 !important;
-    /* Icono NEGRO para contraste */
-    transform: scale(1.1) translateX(-3px);
-    border-color: var(--accent);
-}
+.map-section{ width: 100%; }
 
-.region-list {
-    list-style: none;
-    padding: 10px 20px 20px 10px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 10px;
+.map-viewport{
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  height: 38vh;
+  min-height: 260px;
+  overflow: hidden;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.region-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+.map-zoom-target{
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  will-change: transform;
 }
 
-.color-box {
-    width: 14px;
-    height: 14px;
-    background-color: var(--region-color);
-    border-radius: 3px;
-}
-
-.region-name {
-    color: var(--text-main);
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-/* ==========================================================================
-   8. TRAILS EXPLORER & FOOTER
-   ========================================================================== */
-
-.trails-explorer {
-    color: var(--text-main);
-    min-height: 140px;
-    /* Reducido para que sea una transición elegante, no un bloque pesado */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    background-color: var(--bg-panel);
-    /* Cambiado a body para que se integre */
-    border-top: 1px solid var(--border-ui);
-    border-bottom: 1px solid var(--border-ui);
-}
+.mapa-svg{ width: 90%; height: 90%; }
+.mapa-svg path.region{ fill: var(--region-base); stroke: var(--bg); stroke-width: 1; cursor: pointer; }
+.mapa-svg path.region.visitado{ fill: var(--accent); }
 
-.activity-nav {
-    width: 100%;
-    max-width: 1300px;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    /* Título arriba, botones abajo */
-    gap: 20px;
-    z-index: 1;
+.zoom-controls{
+  position: absolute; right: 10px; bottom: 10px;
+  display: flex; flex-direction: column; gap: 6px; z-index: 5;
 }
 
-.activity-list {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    /* Alineado a la izquierda para scroll natural */
-    gap: 10px;
-    list-style: none;
-
-    scrollbar-width: none;
+.zoom-btn{
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface-2);
+  color: var(--text); font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
 }
 
-.activity-list::-webkit-scrollbar {
-    display: none;
+.map-hint{
+  position: absolute; left: 10px; bottom: 10px;
+  font-size: .7rem; color: var(--text-dim); pointer-events: none;
 }
 
-.activity-item a {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 24px;
-    color: var(--text-muted);
-    /* Texto suave inicialmente */
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-radius: 12px;
-    /* Match con el radio de las cards */
-    background: var(--bg-card);
-    border: 1px solid var(--border-ui);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    white-space: nowrap;
+/* LISTA & SEARCH EN MÓVIL */
+.list-section{
+  display: flex; flex-direction: column; gap: 10px;
 }
 
-.activity-item a:hover {
-    color: var(--accent);
-    background: rgba(0, 243, 145, 0.03);
-    border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+.list-search{
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 12px;
+  color: var(--text-dim);
 }
 
-/* Estado activo (para cuando se seleccione una categoría) */
-.activity-item a.active {
-    background: var(--accent);
-    color: #000;
-    border-color: var(--accent);
+.list-search input{
+  flex: 1; border: none; outline: none;
+  background: transparent; color: var(--text); font-size: .95rem;
 }
 
-.bg-shape-svg {
-    position: absolute;
-    right: -50px;
-    /* Movido a la derecha para equilibrar el peso visual */
-    top: -50%;
-    width: 600px;
-    opacity: 0.05;
-    /* Menos opacidad para que no distraiga del texto */
-    pointer-events: none;
-    filter: blur(40px);
-    /* Desenfoque para que parezca una iluminación ambiental */
+.region-list{
+  list-style: none;
+  display: flex; flex-direction: column; gap: 6px;
 }
 
-.main-footer {
-    background-color: var(--footer);
-    padding: 20px 5%;
-    border-top: 1px solid rgba(0, 243, 145, 0.2);
+.region-row{
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 48px; padding: 10px 14px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); cursor: pointer;
 }
 
-.footer-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.region-row.visitado{
+  border-color: rgba(0,243,145,.35);
+  background: var(--accent-soft);
 }
 
-.social-link {
-    color: var(--social);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-}
+.region-info{ display: flex; flex-direction: column; }
+.region-name{ font-size: .9rem; font-weight: 600; }
+.region-dept{ font-size: .75rem; color: var(--text-dim); }
 
-.title_categorias {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-main);
+.region-check{
+  width: 20px; height: 20px; border-radius: 6px;
+  border: 1.5px solid var(--text-dim);
+  display: flex; align-items: center; justify-content: center;
 }
-
-/*FOOTER*/
 
-.footer-socials {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+.region-row.visitado .region-check{
+  background: var(--accent); border-color: var(--accent); color: var(--accent-text);
 }
 
-.social-link:hover {
-    color: var(--platzi-green);
-    transform: translateY(-3px);
+.fab-export{
+  position: fixed; right: 16px; bottom: 16px; z-index: 50;
+  display: flex; align-items: center; gap: 8px; padding: 12px 18px;
+  border: none; border-radius: 999px; background: var(--accent);
+  color: var(--accent-text); font-weight: 700; font-size: .85rem;
 }
-
-
-/* ==========================================================================
-   9. RESPONSIVIDAD (MEDIA QUERIES)
-   ========================================================================== */
-@media (max-width: 1024px) {
-    .nav-links {
-        display: none;
-    }
-
-    .explorer-wrapper {
-        flex-direction: column;
-        height: auto;
-    }
 
-    .map-viewport,
-    .subregiones-panel {
-        width: 100%;
-        flex: none;
-    }
+.toast{
+  position: fixed; left: 50%; bottom: 80px;
+  transform: translate(-50%, 12px); background: var(--surface-2);
+  border: 1px solid var(--border); color: var(--text);
+  padding: 8px 16px; border-radius: 999px; font-size: .8rem;
+  opacity: 0; pointer-events: none; transition: all .2s ease; z-index: 60;
 }
+.toast.visible{ opacity: 1; transform: translate(-50%, 0); }
 
-@media (max-width: 768px) {
-    .footer-container {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
-    }
+/* ADAPTACIÓN PANTALLAS GRANDES */
+@media (min-width: 900px){
+  .app-main{ flex-direction: row; max-width: 1200px; margin: 0 auto; }
+  .map-section{ flex: 1.2; }
+  .map-viewport{ height: 80vh; }
+  .list-section{ flex: 1; max-height: 80vh; overflow-y: auto; }
 }
